@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('month');
             $table->year('year');
             $table->foreignId('transaction_id')->constrained()->cascadeOnDelete();
+            $table->unique(['member_id', 'month', 'year']);
             $table->timestamps();
         });
     }
