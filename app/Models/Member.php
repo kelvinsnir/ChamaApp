@@ -19,5 +19,9 @@ class Member extends Model
     {
         return $this->hasMany(Contribution::class);
     }
-}
 
+    public function guarantees()
+    {
+        return $this->hasMany(LoanGuarantor::class);
+    }
+}

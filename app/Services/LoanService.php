@@ -67,4 +67,37 @@ class LoanService
             'approved' => false
         ]);
     }
+
+
+    public static function approveGuarantor(
+        Loan $loan,
+        Member $guarantor
+    ) {
+        if ($loan->status !== 'applied') {
+            throw new \Exception('Loan not in guarantor stage');
+        }
+
+        $record = LoanGuarantor::where('loan_id', $loan->id)
+            ->where('member_id', $guarantor->id)
+            ->firstOrFail();
+
+        if ($record->approved) {
+            throw new \Exception('Guarantor already approved');
+        }
+
+        return DB::transaction(function () use ($loan, $record) {
+
+            // 1️⃣ Approve guarantor
+            $record->update(['approved' => true]);
+
+            // 2️⃣ Check total coverage
+            $totalGuaranteed = $loan->approvedGuarantors()->sum('amount');
+
+            if ($totalGuaranteed >= $loan->amount) {
+                $loan->update(['status' => 'guaranteed']);
+            }
+
+            return $record;
+        });
+    }
 }
