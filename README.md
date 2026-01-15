@@ -1,11 +1,9 @@
 ## Chama App
 
-Chama App Implimentation concept Tinkering around
+Chama App Implementation concept Tinkering around
 
 
-# Chama App – Sessions 1, 2 & 3 (Tinker Master Guide)
-
-This cover and understanding on **(Ledger Foundation)**, **Session 2 (Contributions)**, and **Session 3 (Loans & Guarantors)** into a single, end-to-end **`php artisan tinker` execution guide**.
+This cover and understanding on **(Ledger Foundation)**, **(Contributions)**, and **(Loans & Guarantors)** into a single, end-to-end **`php artisan tinker` execution guide**.
 
 > Goal: for the chama system to **register members, post contributions, issue loans, attach guarantors, and maintain a clean financial ledger**.
 
