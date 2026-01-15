@@ -23,4 +23,9 @@ class Loan extends Model
     {
         return $this->guarantors()->where('approved', true);
     }
+
+    public function repayments()
+    {
+        return $this->hasMany(LoanRepayment::class);
+    }
 }
