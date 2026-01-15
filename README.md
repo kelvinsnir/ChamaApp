@@ -137,7 +137,7 @@ Account::all();
 
 ---
 
-## Completion Checklist
+## Checklist
 
 * [x] Members created
 * [x] Contributions posted
@@ -155,3 +155,72 @@ Account::all();
 * Never update account balances manually
 
 ---
+
+# 13. Loan Repayments 
+
+
+
+When a member repays a loan:
+
+* Money comes in via **Cash / Bank account**
+* **Principal** reduces the loan receivable
+* **Interest** is recognized as income
+* Everything is posted via **ONE ledger transaction**
+
+---
+
+## Required Accounts
+
+Ensure these accounts exist in the database:
+
+* `Cash Account` (asset)
+* `Loan Receivable` (asset)
+* `Interest Income` (income)
+
+
+
+
+
+## 5. Test Using Tinker
+
+```bash
+php artisan tinker
+```
+
+```php
+use App\Models\Loan;
+use App\Services\LoanRepaymentService;
+
+$loan = Loan::first();
+
+LoanRepaymentService::repay($loan, 5000);
+```
+
+### Verify Results
+
+```php
+$loan->fresh()->outstanding_balance;
+```
+
+```php
+$loan->repayments;
+```
+
+```php
+use App\Models\Transaction;
+Transaction::latest()->first()->entries;
+```
+
+---
+
+## Checklist
+
+* [x] Repayment accepted
+* [x] Principal reduced
+* [x] Interest recorded
+* [x] Ledger balanced
+* [x] Loan closed when fully paid
+
+---
+
+
