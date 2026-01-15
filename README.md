@@ -3,7 +3,7 @@
 Chama App Implementation concept Tinkering around
 
 
-This cover and understanding on **(Ledger Foundation)**, **(Contributions)**, and ** (Loans & Guarantors)** into a single, end-to-end **`php artisan tinker` execution guide**.
+This cover and understanding on **(Ledger Foundation)**, **(Contributions)**, and **(Loans & Guarantors)** into a single, end-to-end **`php artisan tinker` execution guide**.
 
 > Goal: for the chama system to **register members, post contributions, issue loans, attach guarantors, and maintain a clean financial ledger**.
 
