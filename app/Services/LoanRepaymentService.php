@@ -37,7 +37,7 @@ class LoanRepaymentService
                 $principalPaid = $loan->outstanding_balance;
             }
 
-            // 🧾 Ledger transaction
+            //  Ledger transaction
             $transaction = Transaction::create([
                 'reference' => 'LOAN-REPAY-' . now()->timestamp,
                 'description' => 'Loan Repayment',
@@ -68,7 +68,7 @@ class LoanRepaymentService
                 ]);
             }
 
-            // 🧠 Save repayment record
+            //  Save repayment record
             $repayment = LoanRepayment::create([
                 'loan_id' => $loan->id,
                 'amount' => $amount,
@@ -77,10 +77,10 @@ class LoanRepaymentService
                 'transaction_id' => $transaction->id,
             ]);
 
-            // 🔻 Reduce outstanding balance
+            //  Reduce outstanding balance
             $loan->decrement('outstanding_balance', $principalPaid);
 
-            // 🟢 Close loan if fully paid
+            //  Close loan if fully paid
             if ($loan->outstanding_balance <= 0) {
                 $loan->update(['status' => 'closed']);
             }
